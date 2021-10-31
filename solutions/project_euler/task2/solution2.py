@@ -10,11 +10,12 @@ find the sum of the even-valued terms.
 import time
 from math import sqrt
 
-from utils.timer import duration
+from solutions.utils.timing import duration
 
 N = 100
 
 
+@duration
 def solution2() -> int:
     return sum({number for number in {fib(n) for n in range(N)} if number < 4000000 and number % 2 == 0})
 
@@ -24,5 +25,4 @@ def fib(n):
 
 
 if __name__ == "__main__":
-    start = time.monotonic()
-    print(solution2(), duration(start))
+    print(solution2())

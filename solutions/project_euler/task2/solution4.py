@@ -7,14 +7,14 @@ By starting with 1 and 2, the first 10 terms will be:
 By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 find the sum of the even-valued terms.
 """
-import time
 from functools import lru_cache
 
-from utils.timer import duration
+from solutions.utils.timing import duration
 
 N = 4000000
 
 
+@duration
 def solution4() -> int:
     response = 0
 
@@ -35,5 +35,4 @@ def fib(n) -> int:
 
 
 if __name__ == "__main__":
-    start = time.monotonic()
-    print(solution4(), duration(start))
+    print(solution4())
