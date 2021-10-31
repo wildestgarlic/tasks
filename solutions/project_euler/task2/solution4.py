@@ -8,21 +8,32 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 find the sum of the even-valued terms.
 """
 import time
-from math import sqrt
+from functools import lru_cache
 
 from utils.timer import duration
 
-N = 100
+N = 4000000
 
 
-def solution2() -> int:
-    return sum({number for number in {fib(n) for n in range(N)} if number < 4000000 and number % 2 == 0})
+def solution4() -> int:
+    response = 0
+
+    f = 0
+    n = 0
+    while f < N:
+        f = fib(n)
+        if f % 2 == 0:
+            response += f
+        n += 1
+
+    return response
 
 
-def fib(n):
-    return int(((1+sqrt(5))**n-(1-sqrt(5))**n)/(2**n*sqrt(5)))
+@lru_cache(maxsize=None)
+def fib(n) -> int:
+    return n if n < 2 else fib(n-1) + fib(n-2)
 
 
 if __name__ == "__main__":
     start = time.monotonic()
-    print(solution2(), duration(start))
+    print(solution4(), duration(start))
